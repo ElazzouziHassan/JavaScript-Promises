@@ -15,6 +15,15 @@ const waitAndFailed = (timer) => {
 };
 
 // test :
-wait(1000).then(console.log).catch(err => console.log(err));
+wait(3000).then( p => {
+  console.log('Wait for 3s !');
+  return wait(2000);
+}).then( p => {
+  console.log('Wiat for 2s !');
+  return wait(1000);
+}).then( p => {
+  console.log('Done With Success.')
+  return waitAndFailed(1000)
+}).then(console.log);
 
-waitAndFailed(3000).then(console.log).catch(err => console.log(err));
+// waitAndFailed(5000).then(console.log).catch(err => console.log(err));
